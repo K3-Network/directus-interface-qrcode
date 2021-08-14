@@ -31,7 +31,7 @@
 This is a simple [Directus 9](https://directus.io/) Interface Extension, which allows to display QR-Codes directly inside of the Directus UI.
 It takes a String input and renders a QR-Code underneath the text field.
 
-To display the QR-Code in the Collection Overview check out [directus-display-qrcode](https://github.com/nico-k3/directus-display-qrcode).
+To display the QR-Code in the Collection Overview check out [directus-display-qrcode](https://github.com/K3-Network/directus-display-qrcode).
 
 
 ### Built With
@@ -50,7 +50,7 @@ There are 2 ways to get up and running. Either you compile the Extension yoursel
 
 1. Clone the repo 
   ```sh
-   git clone https://github.com/nico-k3/directus-interface-qrcode.git
+   git clone https://github.com/K3-Network/directus-interface-qrcode.git
    ```
 2. Install NPM packages
    ```sh
@@ -77,7 +77,7 @@ There are 2 ways to get up and running. Either you compile the Extension yoursel
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/nico-k3/directus-interface-qrcode/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/K3-Network/directus-interface-qrcode/issues) for a list of proposed features (and known issues).
 
 
 
@@ -91,6 +91,6 @@ Distributed under the ISC License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Nicolas Mierbach - K3.Network
+[Nicolas Mierbach](https://github.com/nico-k3) - K3.Network
 
-Project Link: [https://github.com/nico-k3/directus-interface-qrcode](https://github.com/nico-k3/directus-interface-qrcode)
+Project Link: [https://github.com/K3-Network/directus-interface-qrcode](https://github.com/K3-Network/directus-interface-qrcode)
