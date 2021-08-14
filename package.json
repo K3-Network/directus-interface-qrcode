@@ -1,0 +1,25 @@
+{
+  "name": "directus-interface-qrcode",
+  "version": "1.0.0",
+  "description": "An Interface that shows a QR-Code representation of a String.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "K3.Network",
+  "license": "ISC",
+  "directus:extension": {
+    "type": "interface",
+    "path": "dist/index.js",
+    "source": "src/index.js",
+    "host": "^9.0.0-rc.87",
+    "hidden": false
+  },
+  "devDependencies": {
+    "@directus/extension-sdk": "^9.0.0-rc.90"
+  },
+  "dependencies": {
+    "qrcode.vue": "^3.2.2"
+  }
+}
