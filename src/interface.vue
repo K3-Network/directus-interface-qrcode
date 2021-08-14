@@ -4,7 +4,13 @@
       <input :value="value" @input="handleChange($event.target.value)" />
     </div>
     <div class="code">
-      <qrcode-vue class="qr" :value="value" :size="300" level="H" />
+      <qrcode-vue
+        class="qr"
+        v-bind:class="value == '' || !value ? 'hidden' : ''"
+        :value="value"
+        :size="300"
+        level="H"
+      />
     </div>
   </div>
 </template>
@@ -81,5 +87,8 @@ export default {
   width: 300px !important;
   height: auto !important;
   max-width: 100%;
+}
+.qr.hidden {
+  display: none;
 }
 </style>
