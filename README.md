@@ -66,7 +66,7 @@ There are 2 ways to get up and running. Either you compile the Extension yoursel
 
 ### Install the precompiled Extension
 
-1. Download the [Binaries]()
+1. Download the [Binaries](https://github.com/K3-Network/directus-interface-qrcode/releases/latest/download/directus-interface-qrcode.zip)
    
 2. Extract the ZIP into `Your-Directus-Installation\extensions\interfaces\`
 
