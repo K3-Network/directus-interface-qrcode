@@ -11,24 +11,44 @@
         :size="300"
         level="H"
       />
+      <p class="error">{{ error }}</p>
+      <p class="decode-result">
+        Last result: <b>{{ result }}</b>
+      </p>
+      <qrcode-stream @decode="onDecode" @init="onInit" />
     </div>
   </div>
 </template>
 
 <script>
 import QrcodeVue from "qrcode.vue";
+import { QrcodeStream } from "qrcode-reader-vue3";
+
 export default {
   emits: ["input"],
   props: {
     value: String,
   },
+  components: {
+    QrcodeVue,
+    QrcodeStream,
+  },
+  data() {
+    return {
+      result: "",
+      error: "",
+    };
+  },
   methods: {
     handleChange(value) {
       this.$emit("input", value);
     },
-  },
-  components: {
-    QrcodeVue,
+    onDecode(result) {
+      this.result = result;
+    },
+    onInit(promise) {
+      promise.then(console.log).catch(console.error);
+    },
   },
 };
 </script>
