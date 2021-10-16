@@ -2,6 +2,7 @@
   <div class="box">
     <div class="input">
       <input :value="value" @input="handleChange($event.target.value)" />
+      <v-button @click="overlay = true">Camera</v-button>
     </div>
     <div class="code">
       <qrcode-vue
@@ -11,13 +12,23 @@
         :size="300"
         level="H"
       />
-      <p class="error">{{ error }}</p>
-      <p class="decode-result">
-        Last result: <b>{{ result }}</b>
-      </p>
-      <qrcode-stream @decode="onDecode" @init="onInit" />
     </div>
   </div>
+  <v-overlay :active="overlay">
+    <v-card>
+      <v-card-title>Scan QR-Code</v-card-title>
+      <v-card-text>
+        <p class="error">{{ error }}</p>
+        <p class="decode-result">
+          Last result: <b>{{ result }}</b>
+        </p>
+      </v-card-text>
+      <qrcode-stream @decode="onDecode" @init="onInit" />
+      <v-card-actions>
+        <v-button @click="overlay = false">Close</v-button>
+      </v-card-actions>
+    </v-card>
+  </v-overlay>
 </template>
 
 <script>
@@ -37,6 +48,7 @@ export default {
     return {
       result: "",
       error: "",
+      overlay: false,
     };
   },
   methods: {
@@ -46,8 +58,41 @@ export default {
     onDecode(result) {
       this.result = result;
     },
-    onInit(promise) {
-      promise.then(console.log).catch(console.error);
+    async onInit(promise) {
+      // show loading indicator
+
+      try {
+        const { capabilities } = await promise;
+
+        // successfully initialized
+      } catch (error) {
+        if (error.name === "NotAllowedError") {
+          // user denied camera access permisson
+          this.error =
+            "ERROR 401: It seems like you have denied Camera access. Please provide permission to this Website to use your Camera.";
+        } else if (error.name === "NotFoundError") {
+          // no suitable camera device installed
+          this.error = "ERROR 404: We could not detect a Camera device.";
+        } else if (error.name === "NotSupportedError") {
+          // page is not served over HTTPS (or localhost)
+          this.error =
+            "ERROR 505: This Website needs to be served via HTTPS or localhost to request Camera access.";
+        } else if (error.name === "NotReadableError") {
+          // maybe camera is already in use
+          this.error =
+            "ERROR 429: The camera access is permitted but it is not accesible. Probably your Camera is allready used by another App.";
+        } else if (error.name === "OverconstrainedError") {
+          // did you requested the front camera although there is none?
+          this.error =
+            "ERROR 400: Did you requested the front camera although there is none?";
+        } else if (error.name === "StreamApiNotSupportedError") {
+          // browser seems to be lacking features
+          this.error =
+            "ERROR 405: It seems like your Browser is lacking features to use this App.";
+        }
+      } finally {
+        //
+      }
     },
   },
 };
