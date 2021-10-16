@@ -23,9 +23,8 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 This is a simple [Directus 9](https://directus.io/) Interface Extension, which allows to display QR-Codes directly inside of the Directus UI.
@@ -33,25 +32,27 @@ It takes a String input and renders a QR-Code underneath the text field.
 
 To display the QR-Code in the Collection Overview check out [directus-display-qrcode](https://github.com/K3-Network/directus-display-qrcode).
 
-
 ### Built With
 
-* [Vue](https://github.com/vuejs/vue)
-* [qrcode.vue](https://github.com/scopewu/qrcode.vue)
-
-
+- [Vue](https://github.com/vuejs/vue)
+- [qrcode.vue](https://github.com/scopewu/qrcode.vue)
+- [qrcode-reader-vue3](https://github.com/scholtz/qrcode-reader-vue3)
+- [SASS](https://github.com/sass/sass)
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 There are 2 ways to get up and running. Either you compile the Extension yourself, or you download the precompiled Extension:
 
 ### Compile it yourself
 
-1. Clone the repo 
-  ```sh
-   git clone https://github.com/K3-Network/directus-interface-qrcode.git
-   ```
+1. Clone the repo
+
+```sh
+ git clone https://github.com/K3-Network/directus-interface-qrcode.git
+```
+
 2. Install NPM packages
    ```sh
    npm install
@@ -67,28 +68,24 @@ There are 2 ways to get up and running. Either you compile the Extension yoursel
 ### Install the precompiled Extension
 
 1. Download the [Binaries](https://github.com/K3-Network/directus-interface-qrcode/releases/latest/download/directus-interface-qrcode.zip)
-   
 2. Extract the ZIP into `Your-Directus-Installation\extensions\interfaces\`
 
 3. Restart Directus
 
-
-
 <!-- ROADMAP -->
+
 ## Roadmap
 
 See the [open issues](https://github.com/K3-Network/directus-interface-qrcode/issues) for a list of proposed features (and known issues).
 
-
-
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the ISC License. See `LICENSE` for more information.
 
-
-
 <!-- CONTACT -->
+
 ## Contact
 
 [Nicolas Mierbach](https://github.com/nico-k3) - K3.Network
