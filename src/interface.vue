@@ -2,7 +2,9 @@
   <div class="box">
     <div class="input">
       <input :value="value" @input="handleChange($event.target.value)" />
-      <v-button @click="overlay = true">Camera</v-button>
+      <v-button :icon="true" @click="overlay = true"
+        ><v-icon name="photo_camera"
+      /></v-button>
     </div>
     <div class="code">
       <qrcode-vue
@@ -13,22 +15,28 @@
         level="H"
       />
     </div>
+    <v-overlay :active="overlay">
+      <v-card>
+        <v-card-title>Scan QR-Code</v-card-title>
+        <v-card-text>
+          <p class="error">{{ error }}</p>
+          <p class="decode-result">
+            Last result: <b>{{ result }}</b>
+          </p>
+        </v-card-text>
+        <qrcode-stream @decode="onDecode" @init="onInit" />
+        <v-card-text class="hintText">
+          <p>
+            The Image will not be saved. Only the String Value of the QR-Code
+            is.
+          </p>
+        </v-card-text>
+        <v-card-actions>
+          <v-button @click="overlay = false">Close</v-button>
+        </v-card-actions>
+      </v-card>
+    </v-overlay>
   </div>
-  <v-overlay :active="overlay">
-    <v-card>
-      <v-card-title>Scan QR-Code</v-card-title>
-      <v-card-text>
-        <p class="error">{{ error }}</p>
-        <p class="decode-result">
-          Last result: <b>{{ result }}</b>
-        </p>
-      </v-card-text>
-      <qrcode-stream @decode="onDecode" @init="onInit" />
-      <v-card-actions>
-        <v-button @click="overlay = false">Close</v-button>
-      </v-card-actions>
-    </v-card>
-  </v-overlay>
 </template>
 
 <script>
@@ -57,10 +65,11 @@ export default {
     },
     onDecode(result) {
       this.result = result;
+      this.$emit("input", result);
+      this.overlay = false;
     },
     async onInit(promise) {
-      // show loading indicator
-
+      console.log("Loading...");
       try {
         const { capabilities } = await promise;
 
@@ -91,14 +100,14 @@ export default {
             "ERROR 405: It seems like your Browser is lacking features to use this App.";
         }
       } finally {
-        //
+        console.log("Camera Loaded.");
       }
     },
   },
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .input {
   position: relative;
   display: flex;
@@ -155,5 +164,14 @@ export default {
 }
 .qr.hidden {
   display: none;
+}
+.hintText {
+  // @include type-note;
+  color: var(--foreground-subdued);
+  font-weight: 500;
+  font-size: 13px;
+  font-family: var(--family-sans-serif);
+  font-style: italic;
+  line-height: 18px;
 }
 </style>
