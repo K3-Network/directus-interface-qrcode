@@ -31,8 +31,12 @@
             is.
           </p>
         </v-card-text>
+        <v-card-text>
+          <v-checkbox v-model="checked" label="close after scan" />
+        </v-card-text>
         <v-card-actions>
           <v-button @click="overlay = false">Close</v-button>
+          <v-button @click="onDecode">Simulate</v-button>
         </v-card-actions>
       </v-card>
     </v-overlay>
@@ -57,6 +61,7 @@ export default {
       result: "",
       error: "",
       overlay: false,
+      checked: true,
     };
   },
   methods: {
@@ -66,7 +71,7 @@ export default {
     onDecode(result) {
       this.result = result;
       this.$emit("input", result);
-      this.overlay = false;
+      if (this.checked) this.overlay = false;
     },
     async onInit(promise) {
       console.log("Loading...");
