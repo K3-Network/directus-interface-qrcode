@@ -2,9 +2,15 @@
   <div class="box">
     <div class="input">
       <input :value="value" @input="handleChange($event.target.value)" />
-      <v-button :icon="true" @click="overlay = true"
-        ><v-icon name="photo_camera"
-      /></v-button>
+      <v-button :icon="true" @click="overlay = true">
+        <v-icon name="photo_camera" />
+      </v-button>
+      <qrcode-capture :id="id" class="qrcode-upload" @decode="onDecode" />
+      <label class="qrcode-upload-label" :for="id">
+        <div class="uploadbutton">
+          <v-icon name="upload_file" />
+        </div>
+      </label>
     </div>
     <div class="code">
       <qrcode-vue
@@ -45,7 +51,7 @@
 
 <script>
 import QrcodeVue from "qrcode.vue";
-import { QrcodeStream } from "qrcode-reader-vue3";
+import { QrcodeStream, QrcodeCapture } from "qrcode-reader-vue3";
 
 export default {
   emits: ["input"],
@@ -55,6 +61,7 @@ export default {
   components: {
     QrcodeVue,
     QrcodeStream,
+    QrcodeCapture,
   },
   data() {
     return {
@@ -62,6 +69,7 @@ export default {
       error: "",
       overlay: false,
       checked: true,
+      id: Math.random(),
     };
   },
   methods: {
@@ -128,7 +136,7 @@ export default {
   border: var(--border-width) solid var(--border-normal);
   border-radius: var(--border-radius);
   transition: border-color var(--fast) var(--transition);
-  &::hover {
+  &:hover {
     --arrow-color: var(--border-normal-alt);
     color: var(--v-input-color);
     background-color: var(--background-input);
@@ -178,5 +186,34 @@ export default {
   font-family: var(--family-sans-serif);
   font-style: italic;
   line-height: 18px;
+}
+.qrcode-upload {
+  display: none;
+}
+.uploadbutton {
+  margin-left: 0.5rem;
+  width: var(--v-button-height);
+  min-width: 0;
+  padding: 0;
+  justify-content: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: var(--v-button-height);
+  color: var(--v-button-color);
+  font-weight: var(--v-button-font-weight);
+  font-size: var(--v-button-font-size);
+  line-height: var(--v-button-line-height);
+  text-decoration: none;
+  background-color: var(--v-button-background-color);
+  border: var(--border-width) solid var(--v-button-background-color);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: var(--fast) var(--transition);
+  &:hover {
+    color: var(--v-button-color-hover);
+    background-color: var(--v-button-background-color-hover);
+    border-color: var(--v-button-background-color-hover);
+  }
 }
 </style>
