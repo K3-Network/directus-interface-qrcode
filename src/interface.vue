@@ -81,7 +81,7 @@ export default {
             "ERROR 401: It seems like you have denied Camera access. Please provide permission to this Website to use your Camera.";
         } else if (error.name === "NotFoundError") {
           // no suitable camera device installed
-          this.error = "ERROR 404: We could not detect a Camera device.";
+          this.error = "ERROR 404: Could not detect a Camera device.";
         } else if (error.name === "NotSupportedError") {
           // page is not served over HTTPS (or localhost)
           this.error =
