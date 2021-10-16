@@ -123,31 +123,31 @@ export default {
   border: var(--border-width) solid var(--border-normal);
   border-radius: var(--border-radius);
   transition: border-color var(--fast) var(--transition);
-}
-.input:hover {
-  --arrow-color: var(--border-normal-alt);
-  color: var(--v-input-color);
-  background-color: var(--background-input);
-  border-color: var(--border-normal-alt);
-}
-.input.active,
-.input:focus-within {
-  --arrow-color: var(--border-normal-alt);
-  color: var(--v-input-color);
-  background-color: var(--background-input);
-  border-color: var(--v-input-border-color-focus);
-}
-.input input {
-  flex-grow: 1;
-  width: 20px;
-  height: 100%;
-  padding: var(--input-padding);
-  padding-right: 0;
-  padding-left: 0;
-  font-family: var(--v-input-font-family);
-  background-color: transparent;
-  border: none;
-  appearance: none;
+  &::hover {
+    --arrow-color: var(--border-normal-alt);
+    color: var(--v-input-color);
+    background-color: var(--background-input);
+    border-color: var(--border-normal-alt);
+  }
+  &.active,
+  &:focus-within {
+    --arrow-color: var(--border-normal-alt);
+    color: var(--v-input-color);
+    background-color: var(--background-input);
+    border-color: var(--v-input-border-color-focus);
+  }
+  input {
+    flex-grow: 1;
+    width: 20px;
+    height: 100%;
+    padding: var(--input-padding);
+    padding-right: 0;
+    padding-left: 0;
+    font-family: var(--v-input-font-family);
+    background-color: transparent;
+    border: none;
+    appearance: none;
+  }
 }
 .code {
   border: var(--border-width) solid var(--border-normal);
@@ -161,9 +161,9 @@ export default {
   width: 300px !important;
   height: auto !important;
   max-width: 100%;
-}
-.qr.hidden {
-  display: none;
+  &.hidden {
+    display: none;
+  }
 }
 .hintText {
   // @include type-note;
