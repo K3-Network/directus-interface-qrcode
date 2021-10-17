@@ -1,7 +1,7 @@
 {
   "name": "directus-interface-qrcode",
   "version": "1.0.0",
-  "description": "An Interface that shows a QR-Code representation of a String.",
+  "description": "Shows a QR-Code of a String and lets you scan or upload a QR-Code that gets decoded into the field.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
