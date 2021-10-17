@@ -27,8 +27,9 @@
 
 ## About The Project
 
-This is a simple [Directus 9](https://directus.io/) Interface Extension, which allows to display QR-Codes directly inside of the Directus UI.
+This is a simple [Directus 9](https://directus.io/) Interface Extension, which allows to display and scan QR-Codes directly inside of the Directus UI.
 It takes a String input and renders a QR-Code underneath the text field.
+It also lets you scan or upload a QR-Code, which gets decoded into a String value and emited to the input.
 
 To display the QR-Code in the Collection Overview check out [directus-display-qrcode](https://github.com/K3-Network/directus-display-qrcode).
 
