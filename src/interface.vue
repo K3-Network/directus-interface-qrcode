@@ -42,7 +42,6 @@
         </v-card-text>
         <v-card-actions>
           <v-button @click="overlay = false">Close</v-button>
-          <v-button @click="onDecode">Simulate</v-button>
         </v-card-actions>
       </v-card>
     </v-overlay>
