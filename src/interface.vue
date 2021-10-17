@@ -68,9 +68,16 @@ export default {
       result: "",
       error: "",
       overlay: false,
-      checked: true,
+      checked: localStorage.qrCodeCloseOverlayOnDecode
+        ? localStorage.qrCodeCloseOverlayOnDecode
+        : true,
       id: Math.random(),
     };
+  },
+  watch: {
+    checked(value) {
+      localStorage.qrCodeCloseOverlayOnDecode = value;
+    },
   },
   methods: {
     handleChange(value) {
@@ -80,6 +87,9 @@ export default {
       this.result = result;
       this.$emit("input", result);
       if (this.checked) this.overlay = false;
+    },
+    toggleCheckbox(value) {
+      console.log("ja");
     },
     async onInit(promise) {
       console.log("Loading...");
