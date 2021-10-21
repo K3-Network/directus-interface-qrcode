@@ -2,15 +2,19 @@
   <div class="box">
     <div class="input">
       <input :value="value" @input="handleChange($event.target.value)" />
-      <v-button :icon="true" @click="overlay = true">
-        <v-icon name="photo_camera" />
-      </v-button>
-      <qrcode-capture :id="id" class="qrcode-upload" @decode="onDecode" />
-      <label class="qrcode-upload-label" :for="id">
-        <div class="uploadbutton">
-          <v-icon name="upload_file" />
-        </div>
-      </label>
+      <div v-if="activateScanning">
+        <v-button :icon="true" @click="overlay = true">
+          <v-icon name="photo_camera" />
+        </v-button>
+      </div>
+      <div v-if="activateUpload">
+        <qrcode-capture :id="id" class="qrcode-upload" @decode="onDecode" />
+        <label class="qrcode-upload-label" :for="id">
+          <div class="uploadbutton">
+            <v-icon name="upload_file" />
+          </div>
+        </label>
+      </div>
     </div>
     <div class="code">
       <qrcode-vue
@@ -21,30 +25,32 @@
         level="H"
       />
     </div>
-    <v-overlay :active="overlay">
-      <v-card>
-        <v-card-title>Scan QR-Code</v-card-title>
-        <v-card-text>
-          <p class="error">{{ error }}</p>
-          <p class="decode-result">
-            Last result: <b>{{ result }}</b>
-          </p>
-        </v-card-text>
-        <qrcode-stream @decode="onDecode" @init="onInit" />
-        <v-card-text class="hintText">
-          <p>
-            The Image will not be saved. Only the String Value of the QR-Code
-            is.
-          </p>
-        </v-card-text>
-        <v-card-text>
-          <v-checkbox v-model="checked" label="close after scan" />
-        </v-card-text>
-        <v-card-actions>
-          <v-button @click="overlay = false">Close</v-button>
-        </v-card-actions>
-      </v-card>
-    </v-overlay>
+    <div v-if="activateScanning">
+      <v-overlay :active="overlay">
+        <v-card>
+          <v-card-title>Scan QR-Code</v-card-title>
+          <v-card-text>
+            <p class="error">{{ error }}</p>
+            <p class="decode-result">
+              Last result: <b>{{ result }}</b>
+            </p>
+          </v-card-text>
+          <qrcode-stream @decode="onDecode" @init="onInit" />
+          <v-card-text class="hintText">
+            <p>
+              The Image will not be saved. Only the String Value of the QR-Code
+              is.
+            </p>
+          </v-card-text>
+          <v-card-text>
+            <v-checkbox v-model="checked" label="close after scan" />
+          </v-card-text>
+          <v-card-actions>
+            <v-button @click="overlay = false">Close</v-button>
+          </v-card-actions>
+        </v-card>
+      </v-overlay>
+    </div>
   </div>
 </template>
 
@@ -55,7 +61,18 @@ import { QrcodeStream, QrcodeCapture } from "qrcode-reader-vue3";
 export default {
   emits: ["input"],
   props: {
-    value: String,
+    value: {
+      type: String,
+      default: null,
+    },
+    activateScanning: {
+      type: Boolean,
+      default: true,
+    },
+    activateUpload: {
+      type: Boolean,
+      default: true,
+    },
   },
   components: {
     QrcodeVue,
