@@ -15,6 +15,7 @@ export default {
       meta: {
         width: "full",
         interface: "boolean",
+        note: "Lets the Users scan QR-Codes using their Camera.",
       },
       schema: {
         default_value: true,
@@ -27,6 +28,7 @@ export default {
       meta: {
         width: "full",
         interface: "boolean",
+        note: "Lets the Users upload QR-Codes.",
       },
       schema: {
         default_value: true,
